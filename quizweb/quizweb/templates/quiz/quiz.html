@@ -135,11 +135,11 @@
       </div>
       <div class="navbar navbar-dark bg-primary shadow-sm">
         <div class="container" style="color:white;">
-          <a href="#" class="navbar-brand d-flex flex-row align-items-center">
+          <a href="#" class="navbar-brand d-flex flex-row justify-content-center align-items-center">
 
               <div>
                 <a href=".." style="text-decoration: none; color:white;">
-                    <div style="font-size:25px; font-family: 'Jua', sans-serif;">HOW MUCH</div>
+                    <div style="font-size:30px; font-family: 'Jua', sans-serif;">HOW MUCH</div>
                 </a>
               </div>
 
@@ -148,15 +148,10 @@
                       <div ></div>
                   </a>
                 </div>
-    
-            <div style="display:flex; flex-direction:row; justify-content: space-between; align-items:center; margin: 0px 0px 0px 25px;">
-                <div style="font-family: 'Jua', sans-serif; font-size:18px;">최고 기록 </div>
-                <div style="font-family: 'Jua', sans-serif; margin-left:20px; font-size:15px;">0 </div>
-            </div>
-
-            <div style="display:flex; flex-direction:row; justify-content: space-between; align-items:center; margin: 0px 0px 0px 25px;">
-              <div style="font-family: 'Jua', sans-serif; font-size:18px;">현재 점수 </div>
-              <div style="font-family: 'Jua', sans-serif; margin-left:20px; font-size:15px;">0 </div>
+  
+            <div style="display:flex; flex-direction:row; justify-content: space-between; align-items:center; margin: 0px 0px 0px 15px;">
+              <div style="font-family: 'Jua', sans-serif; font-size:25px;">현재 점수 </div>
+              <div style="font-family: 'Jua', sans-serif; margin-left:20px; font-size:25px;" id="now-score">{{now_score}} </div>
             </div>   
 
             
@@ -284,9 +279,13 @@
     원 
   </div>
 </div>
-
-<div class="text-center answer-score" style="font-family: 'Jua', sans-serif; font-size:30px;  ">
-  점수
+<div class="d-flex flex:row justify-content-center">
+  <div class="text-center answer-score" style="font-family: 'Jua', sans-serif; font-size:30px;  ">
+    점수
+  </div>
+  <div class="text-center answer-input" id="answer-score" style="font-family: 'Jua', sans-serif;  font-size:25px; margin-left:20px;">
+    
+  </div>
 </div>
 
 <button id="button_next" onclick="nextQuiz()" type="button" class="label btn btn-primary" style="font-size:20px; font-weight:bold; width:30%; height:10%; position: relative; left: 35%; bottom:0%; ">
@@ -305,13 +304,19 @@
 </html>
 
 <script>
+var nowScore = $('#now-score').text()
+if(nowScore==" "){
+  console.log("아")
+  $('#now-score').text(0)
+}
+
 $(".plus").click(function (event){
     var plusValue = event.target.attributes.getNamedItem("plus_value").value;
     var resultValue = parseInt($('#price').val()) +  parseInt(plusValue)  
     var currentValue = $('#price').attr("value")
     $('#price').attr("value",resultValue)
-    if ($('#price').attr("value")>=1000000){
-      alert("100만원 미만으로 입력가능합니다!")
+    if ($('#price').attr("value")>=1500000){
+      alert("150만원 미만으로 입력가능합니다!")
       $('#price').attr("value",resultValue - plusValue)
     }
 
@@ -342,10 +347,10 @@ $("#clear").click(function (event){
 
 
 $("#submit").click(function (event){
-  if ($('#price').attr("value")>=1000000){
+  if ($('#price').attr("value")>=1500000){
     var plusValue = event.target.attributes.getNamedItem("plus_value").value;
     var resultValue = parseInt($('#price').val()) +  parseInt(plusValue)  
-    alert("100만원 미만으로 입력가능합니다!")
+    alert("150만원 미만으로 입력가능합니다!")
     $('#price').attr("value",resultValue - plusValue)
 
   }
@@ -358,6 +363,8 @@ $("#submit").click(function (event){
   modal.style.display = "flex";
   document.body.style.overflowY = "hidden"; // 스크롤 없애기
   var price = $('#price').attr("value")
+
+
   url = "check?"+"price="+price
 
   $.ajax({
@@ -369,6 +376,9 @@ $("#submit").click(function (event){
       console.log(response.answer_price)
        $('#answer-input').text(response.price)
        $('#answer-answer').text(response.answer_price)
+       $('#answer-score').text(response.score)
+
+       
     },
     error: function (response) {
 
@@ -384,9 +394,36 @@ $("#submit").click(function (event){
 
 function nextQuiz(){
   const modal = document.getElementById("first_modal");
+
+  var nowScore = parseInt($('#now-score').text())
+  var newScore = parseInt($('#answer-score').text())+nowScore
+  console.log(newScore)
+
   modal.style.display = "none";
   document.body.style.overflowY = "visible";
-  location.reload();
+
+  var url = "score?"+"now_score="+newScore
+
+
+  $.ajax({
+    url:url,
+    data: {},
+    method: "GET",
+    success: function (response) {
+      console.log("성공?")
+      location.reload(); // 새로고침으로 session을 가져옴
+       
+    },
+    error: function (response) {
+
+    },
+    complete: function () {
+
+
+    }
+})
+  
+
 };
  
 
