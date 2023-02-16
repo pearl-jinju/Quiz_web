@@ -190,7 +190,7 @@
             <form>
                 <div class="row ">
                   <div class="form-group col-12 " style="margin-top:15px;">
-                    <input id="price" type="text" class="price form-control" style="text-align:center; font-family: 'Jua', sans-serif; font-size:20px;" value=0 placeholder="단위: 원" />
+                    <input id="price" type="text" class="price form-control" style="text-align:center; font-family: 'Jua', sans-serif; font-size:20px;" value=0 placeholder="단위: 원" / readonly>
                   </div>
                 </div>  
 
@@ -289,6 +289,9 @@
   <div class="text-center answer-score" style="font-family: 'Jua', sans-serif; font-size:30px;  ">
     점수
   </div>
+  <div class="text-center answer-input" id="answer-score-real" style="display:none;">
+    
+  </div>
   <div class="text-center answer-input" id="answer-score" style="font-family: 'Jua', sans-serif;  font-size:25px; margin-left:20px;">
     
   </div>
@@ -326,7 +329,6 @@
 <script>
 var nowScore = $('#now-score').text()
 if(nowScore==" "){
-  console.log("아")
   $('#now-score').text(0)
 }
 
@@ -391,10 +393,10 @@ $("#submit").click(function (event){
     data: {},
     method: "GET",
     success: function (response) {
-      console.log(response.price)
-      console.log(response.answer_price)
+
       // 입력한 값 불러오기
       $('#answer-input').text(response.price)
+      $('#answer-score-real').text(response.score)
 
       // 정답 불러오기
       $({answer_price:0}).animate(({answer_price:response.answer_price}),{
@@ -443,8 +445,7 @@ function nextQuiz(){
   const modal = document.getElementById("first_modal");
 
   var nowScore = parseInt($('#now-score').text())
-  var newScore = parseInt($('#answer-score').text())+nowScore
-  console.log(newScore)
+  var newScore = parseInt($('#answer-score-real').text())+nowScore
 
   modal.style.display = "none";
   document.body.style.overflowY = "visible";
@@ -457,7 +458,6 @@ function nextQuiz(){
     data: {},
     method: "GET",
     success: function (response) {
-      console.log("성공?")
       location.reload(); // 새로고침으로 session을 가져옴
        
     },

@@ -29,7 +29,6 @@ class Quiz(APIView):
         #문제의 순번을 받음
         quiz_count = request.session.get('quiz_count', 0) 
         request.session['quiz_count'] = int(quiz_count)+1
-        print("현재라운드",request.session['quiz_count'])
         
         # tip 제공기능
         tip_list =[
@@ -38,6 +37,7 @@ class Quiz(APIView):
             "tip : 정답 오차범위는 ±1% 입니다. 정답은 +100점을 얻습니다. ",
             "tip : 최고가격은 150만원입니다. ",
             "tip : 정답과 ±30% 미만으로 차이나는 경우에만 점수를 얻습니다.",
+            "tip : 정답과 ±30% 이상으로 차이나는 경우에는 점수를 잃습니다.",
             "tip : 0원을 제출하면 -200점을 받습니다.",
             "tip : 총 10 문제가 제시됩니다.",
             "tip : 쇼핑몰 가격기준입니다.",
@@ -74,7 +74,6 @@ class Quiz(APIView):
                 break
                 
         request.session['quiz_num_list'] = quiz_num_list
-        print("현재뽑힌상품",quiz_num_list)
         
         request.session['quiz_num'] = quiz_num
         
