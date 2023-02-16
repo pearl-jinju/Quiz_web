@@ -98,44 +98,48 @@ class CheckAnswer(APIView):
 
         #점수계산 로직
         #점수 하락구간 30% 오차 최대     하락 점수 패널티 구간 90%
-        error = abs(round((price-int(answer_price))/int(answer_price),2))
-        if error>=0.9:
-            score=-100
-        elif error>=0.85:
-            score=-75
-        elif error>=0.80:
-            score=-50
-        elif error>=0.75:
-            score=-45
-        elif error>=0.70:
-            score=-35
-        elif error>=0.65:
-            score=-25
-        elif error>=0.50:
-            score=-20
-        elif error>=0.45:
-            score=-15
-        elif error>=0.40:
-            score=-10
-        elif error>=0.30:
-            score= 15
-        elif error>=0.25:
-            score= 20
-        elif error>=0.20:
-            score= 25
-        elif error>=0.15:
-            score= 30
-        elif error>=0.10:
-            score= 35
-        elif error>=0.05:
-            score= 40
-        elif error>=0.03:
-            score= 50
-        elif error>=0.01:
-            score= 100
-        # 대충 하는 유저에 대한 패널티
-        if price==0:
-            score=-250
+        # zero division error방지
+        if int(price)==int(answer_price):
+            score=100
+        else:            
+            error = abs(round((price-int(answer_price))/int(answer_price),2))
+            if error>=0.9:
+                score=-100
+            elif error>=0.85:
+                score=-75
+            elif error>=0.80:
+                score=-50
+            elif error>=0.75:
+                score=-45
+            elif error>=0.70:
+                score=-35
+            elif error>=0.65:
+                score=-25
+            elif error>=0.50:
+                score=-20
+            elif error>=0.45:
+                score=-15
+            elif error>=0.40:
+                score=-10
+            elif error>=0.30:
+                score= 15
+            elif error>=0.25:
+                score= 20
+            elif error>=0.20:
+                score= 25
+            elif error>=0.15:
+                score= 30
+            elif error>=0.10:
+                score= 35
+            elif error>=0.05:
+                score= 40
+            elif error>=0.03:
+                score= 50
+            elif error>=0.01:
+                score= 100
+            # 대충 하는 유저에 대한 패널티
+            if price==0:
+                score=-250
             
        
         
