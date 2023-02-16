@@ -90,18 +90,69 @@
 
 <main>
 
-  <div class="position-relative overflow-hidden p-2 p-md-2 m-md-2 text-center bg-light" >
+
+
+
+
+  <div id "main-body" class="position-relative overflow-hidden p-2 p-md-2 m-md-2 text-center bg-light" >
       <div class="col-md-5 p-lg-5 mx-auto my-5" >
         <h1 class="display-1 fw-normal" >최종 점수</h1>
-        <h1 id="result-score" class="display-1 fw-normal" style="font-family: 'Jua', sans-serif; margin-top:20px; font-size:100px;">{{now_score}}</h1>
+        <h1 id="result-score" class="display-1 fw-normal" style="font-family: 'Jua', sans-serif; margin-top:20px; font-size:80px;">{{now_score}}</h1>
+        <h1 id="result-nickname" class="display-1 fw-normal" style="font-family: 'Jua', sans-serif; margin-top:20px; font-size:40px;"></h1>
         <h1 id="result-score-temp" style="display:none;">{{now_score}}</h1>
-        <h5 id="mean-score"> 평균점수 {{mean_score}}</h5>
+        <h5 id="mean-score" style="color:gray;"> 평균 점수 {{mean_score}}</h5>
         <h1 class="display-5 fw-normal" style=" margin-top:20px; color:gray; font-size:15px;">{{tip}}</h1>
         <div class="d-flex flex-row justify-content-center">
           <a class="btn btn-outline-primary" style="margin-top:30px; width:200px;" href=".."> 다시하기</a>
 
          <a class="btn btn-danger"   id="kakaotalk-sharing-btn" href="javascript:;" style="margin-top:30px; width:200px;" > 친구에게 공유</a>  
-         <!-- KaKao init 체크-->
+         <script>
+          var showScore = $('#result-score-temp').text()
+          let nickname ="asd";
+          let resultImgage = ""
+          if (showScore>=700){
+            nickname = "물가 전문가"
+            resultImgage = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FF7tPv%2FbtrZuD0v5AB%2FOk02P7apmmH8zrAC4gkQ81%2Fimg.png"
+          }else if(showScore>=500){
+            nickname = "전자 두뇌"
+            resultImgage = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FGaBGf%2FbtrZy9EBP2z%2FXIHpGgUzN48kgsQGmgvgUK%2Fimg.png"
+          }else if(showScore>=300){
+            nickname = "알뜰살뜰형 인간"
+            resultImgage = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fx0Scw%2FbtrZD0Z5S6H%2FR3UQNjFedeWRJ0sTjso5jK%2Fimg.png"
+          }else if(showScore>=100){
+            nickname = "가격표는 보는 사람"
+            resultImgage ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcIzkMi%2FbtrZC4atIgq%2FmJkFKLxfoPanqKSILaCxL1%2Fimg.png"
+          }else if(showScore>=0){
+            nickname = "영수증이 뭐죠?"
+            resultImgage ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbNoM1Y%2FbtrZB3QrtYQ%2F7JXTKTy4AVqghABYYcbB0K%2Fimg.png"
+          }else if(showScore>=-100){
+            nickname = "영수증은 버려주세요"
+            resultImgage ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FH8TLA%2FbtrZz5Ijjx3%2FKAhm1sNJoAJWAjcBE7UkS0%2Fimg.png"
+          }else if(showScore>=-300){
+            nickname = "심부름시키면 안되는 사람"
+            resultImgage ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FzbX10%2FbtrZCpMA7CP%2FCnxKZweFZYKmHsNyWfnDbk%2Fimg.png"
+          }else if(showScore>=-500){
+            nickname = "가격표 안보는 사람"
+            resultImgage ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbBiUww%2FbtrZAgQwYTq%2F1IuLa4qUDAOgWhcr64JdB0%2Fimg.png"
+          }else if(showScore>=-700){
+            nickname = "총무하면 큰일날 사람"
+            resultImgage ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Frq94W%2FbtrZAFJjbhZ%2FVrKz3Tddhy9djebCwacFNk%2Fimg.png"
+          }else{
+            nickname = "세상 물정 모르는 사람"
+            resultImgage ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fce70tE%2FbtrZAfD5b6e%2FSssPbYnvdKMAFcie89NSR1%2Fimg.png"
+          }
+
+          console.log(resultImgage)
+          $('#result-nickname').html(nickname)
+          {% comment %} $('#main-body').css({
+            "background-image":url(resultImgage)
+          }); {% endcomment %}
+
+          
+
+          
+        </script>
+<!-- KaKao init 체크-->
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
 integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
 <script>
@@ -112,10 +163,9 @@ Kakao.Share.createDefaultButton({
   container: '#kakaotalk-sharing-btn',
   objectType: 'feed',
   content: {
-    title: 'HOW MUCH? 가격 맞추기 게임',
+    title: '내 등급 : '+nickname+"\n"+"점수:  "+ $('#result-score-temp').html(),
     description: '나는 세상물정을 잘 아는가?',
-    imageUrl:
-      'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdKHZ8Q%2FbtrZzaXxQD4%2FixdS17bCKmR5Hfs44Ydra1%2Fimg.png',
+    imageUrl: resultImgage,
     link: {
       // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
       mobileWebUrl: 'http://how-much-quiz.shop',
