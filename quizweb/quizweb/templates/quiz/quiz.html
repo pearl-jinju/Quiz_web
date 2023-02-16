@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
     <meta name="generator" content="Hugo 0.104.2">
@@ -97,33 +97,33 @@
     transition: 0.5s ease-in;
   }
 
-{% comment %} .progress-bar {
+ .progress-bar {
   position: relative;
-  width: 100%; height:30px;
-  margin: 3em auto;
-  border: 1px solid green;
+  width: 100%; height:25px;
+  margin: 1em auto;
+  border: 1px solid rgba(255,52,120);
+  border-radius:20px;
 }
 .bar{
   position:absolute;
   left:0; top:0; bottom:0; width:0;
-  background:green;
+  background:rgba(255,52,120);
 }
 
 .rate{
   position:absolute;
    top:0; bottom:0; right:15px;
-  font-size:1.2em; color:green;
+  font-size:0.8em; color:rgba(255,52,120);
   font-weight:bold;
-  line-height:30px;
+  line-height:20px;
+}
 
-} {% endcomment %}
 
 </style>
   </head>
   <body id="main" style="">
  
     <header>
-
       <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
           <div class="row" >
@@ -149,7 +149,7 @@
                   </a>
                 </div>
   
-            <div style="display:flex; flex-direction:row; justify-content: space-between; align-items:center; margin: 0px 0px 0px 15px;">
+            <div style="display:flex; flex-direction:row; justify-content: space-between; align-items:center; margin: 0px 20px 0px 15px;">
               <div style="font-family: 'Jua', sans-serif; font-size:25px;">현재 점수 </div>
               <div style="font-family: 'Jua', sans-serif; margin-left:20px; font-size:25px;" id="now-score">{{now_score}} </div>
             </div>   
@@ -174,12 +174,18 @@
     <div class="container">
       <div class="row">
         <div class="main-frame col-12 text-center my-0 p-0 mb-0 bg-success  text-white bg-opacity-75" style="text-align: center; background: linear-gradient(white, white, white);">
-          <img class="img-fluid border-5 main-image"  width="50%" height="50%" style="min-height: 250px; min-width: 250px;  max-height: 251x; max-width: 251px;" src="{{quizset.img_url}}" alt="Your Image" />
+          <img class="img-fluid border-5 main-image"  width="50%" height="50%" style="min-height: 250px; min-width: 250px;  max-height: 251x; max-width: 251px; margin-bottom:20px;" src="{{quizset.img_url}}" alt="Your Image" />
         </div>
       </div>
+
+      <div class="progress-bar">
+        <div class="bar"></div>
+        <div class="rate" data-rate={{round}} >{{round}}/10</div>
+      </div>
+
       
       <div  class="row col-12 d-flex justify-content-center">
-      <div class="row col-12 " style="background: linear-gradient(skyBlue, skyBlue, skyBlue); border-radius:16px; padding:5px 20px; 5px; 20px; margin-left:15px;">
+      <div class="row col-12 " style="background: #6DF2E5; border-radius:16px; padding:5px 20px; 5px; 20px; margin-left:15px;">
           <div class="col-12">
             <form>
                 <div class="row ">
@@ -189,22 +195,22 @@
                 </div>  
 
                 <div class ="col-12 d-flex justify-content-center text-center" style="margin-top:5px;">
-                  <button type="button" id="clear"  class="clear btn btn-danger" style="font-family: 'Jua', sans-serif; font-size:20px; margin:5px 2px; padding:0px 15px; 0px 15px; border-radius:15px;">CLEAR</button>
+                  <button type="button" id="clear"  class="clear btn btn-primary" style="font-family: 'Jua', sans-serif; font-size:20px; margin:5px 2px; padding:0px 15px; 0px 15px; border-radius:15px;">CLEAR</button>
                   <div>
-                    <button type="button" id="plus100" plus_value=100 class="plus btn btn-primary" style="font-family: 'Jua', sans-serif; font-size:18px; margin:5px 2px; padding:5px 30px; 5px 30px;">+100</button>
-                    <button type="button" id="plus500" plus_value=500 class="plus btn btn-primary" style="font-family: 'Jua', sans-serif; font-size:18px; margin:5px 2px; padding:5px 30px; 5px 30px;">+500</button>
-                    <button type="button" id="plus1000" plus_value=1000 class="plus btn btn-primary" style="font-family: 'Jua', sans-serif; font-size:18px; margin:5px 2px; padding:5px 22px 5px 22px;">+1,000</button>
+                    <button type="button" id="plus100" plus_value=100 class="plus btn btn-primary" style="font-family: 'Jua', sans-serif; font-size:22px; margin:5px 5px; padding:5px 31px; 5px 31px; background-color:#0597F2;">+100</button>
+                    <button type="button" id="plus500" plus_value=500 class="plus btn btn-primary" style="font-family: 'Jua', sans-serif; font-size:22px; margin:5px 5px; padding:5px 31px; 5px 31px; background-color:#0597F2;">+500</button>
+                    <button type="button" id="plus1000" plus_value=1000 class="plus btn btn-primary" style="font-family: 'Jua', sans-serif; font-size:22px; margin:5px 5px; padding:5px 22px 5px 22px; background-color:#6C2EF2;">+1,000</button>
 
-                    <button type="button" id="plus5000" plus_value=5000 class="plus btn btn-primary" style="font-family: 'Jua', sans-serif; font-size:18px; margin:5px 2px; padding:5px 22px 5px 22px;">+5,000</button>
-                    <button type="button" id="plus10000" plus_value=10000 class="plus btn btn-primary" style="font-family: 'Jua', sans-serif; font-size:18px; margin:5px 2px; padding:5px 15px 5px 15px;">+10,000</button>
-                    <button type="button" id="plus50000" plus_value=50000 class="plus btn btn-primary" style="font-family: 'Jua', sans-serif; font-size:18px; margin:5px 2px; padding:5px 15px 5px 15px;">+50,000</button>
+                    <button type="button" id="plus5000" plus_value=5000 class="plus btn btn-primary" style="font-family: 'Jua', sans-serif; font-size:22px; margin:5px 5px; padding:5px 22px 5px 22px; background-color:#6C2EF2;">+5,000</button>
+                    <button type="button" id="plus10000" plus_value=10000 class="plus btn btn-primary" style="font-family: 'Jua', sans-serif; font-size:22px; margin:5px 5px; padding:5px 15px 5px 15px; background-color:#5005F2;">+10,000</button>
+                    <button type="button" id="plus50000" plus_value=50000 class="plus btn btn-primary" style="font-family: 'Jua', sans-serif; font-size:22px; margin:5px 5px; padding:5px 15px 5px 15px; background-color:#5005F2;">+50,000</button>
                   </div>          
                 </div>
-                <button type="button" id="submit"  class="clear btn btn-success" style="font-family: 'Jua', sans-serif;font-size:25px; width:100%; margin:5px 2px; padding:5px 15px 5px 15px;">제 출</button>
+                <button type="button" id="submit"  class="clear btn btn-success" style="font-family: 'Jua', sans-serif;font-size:20px; width:100%; margin:5px 2px; padding:3px 15px 3px 15px;background-color:#5005F2; ">제 출</button>
             </form>
           </div>
-
         </div>
+        <div class="text-center" style="color:gray; font-size:16px;">{{tip}}</div>
       </div>
 
 {% comment %} <div class="progress-bar">
@@ -244,7 +250,7 @@
 <div id="first_modal" class="modal_overlay" >
   <div class="modal_window col-12">
       <div
-          style="border-bottom:solid 2px gray; text-align:center;">
+          style="text-align:center;">
           <div >
             <b></b>
             </div>
@@ -286,12 +292,26 @@
   <div class="text-center answer-input" id="answer-score" style="font-family: 'Jua', sans-serif;  font-size:25px; margin-left:20px;">
     
   </div>
+<!--광고-->
+  <div style="margin-top:15px;">
+    <ins class="kakao_ad_area" style="display:none;"
+    data-ad-unit = "DAN-9ou86AwYf4qIbgRi"
+    data-ad-width = "320"
+    data-ad-height = "50"></ins>
+    <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+</div>
 </div>
 
-<button id="button_next" onclick="nextQuiz()" type="button" class="label btn btn-primary" style="font-size:20px; font-weight:bold; width:30%; height:10%; position: relative; left: 35%; bottom:0%; ">
+<button id="button_next" onclick="nextQuiz()" type="button" class="label btn btn-primary" style="visibility:hidden; font-size:20px; font-weight:bold; width:30%; height:10%; position: relative; left: 35%; bottom:0%; ">
 다음문제
 </button>
 
+  <!--하단 광고 -->
+  <ins class="kakao_ad_area" style="display:none;"
+  data-ad-unit = "DAN-I9jpJgiDXeZX3kqi"
+  data-ad-width = "320"
+  data-ad-height = "100"></ins>
+  <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 </div>
       
 
@@ -315,13 +335,12 @@ $(".plus").click(function (event){
     var resultValue = parseInt($('#price').val()) +  parseInt(plusValue)  
     var currentValue = $('#price').attr("value")
     $('#price').attr("value",resultValue)
-    if ($('#price').attr("value")>=1500000){
-      alert("150만원 미만으로 입력가능합니다!")
+    if ($('#price').attr("value")>=1000000){
+      alert("100만원 미만으로 입력가능합니다!")
       $('#price').attr("value",resultValue - plusValue)
     }
 
 });
-
 
 
 {% comment %} $(".plus").dblclick(function (event){
@@ -347,10 +366,10 @@ $("#clear").click(function (event){
 
 
 $("#submit").click(function (event){
-  if ($('#price').attr("value")>=1500000){
+  if ($('#price').attr("value")>=1000000){
     var plusValue = event.target.attributes.getNamedItem("plus_value").value;
     var resultValue = parseInt($('#price').val()) +  parseInt(plusValue)  
-    alert("150만원 미만으로 입력가능합니다!")
+    alert("100만원 미만으로 입력가능합니다!")
     $('#price').attr("value",resultValue - plusValue)
 
   }
@@ -374,17 +393,45 @@ $("#submit").click(function (event){
     success: function (response) {
       console.log(response.price)
       console.log(response.answer_price)
-       $('#answer-input').text(response.price)
-       $('#answer-answer').text(response.answer_price)
-       $('#answer-score').text(response.score)
+      // 입력한 값 불러오기
+      $('#answer-input').text(response.price)
 
-       
+      // 정답 불러오기
+      $({answer_price:0}).animate(({answer_price:response.answer_price}),{
+        duration: 200,
+        progress: function(){
+          var progress_price = this.answer_price;
+          $('#answer-answer').text(Math.ceil(progress_price));
+        }
+      });
+
+      // 점수 불러오기
+      $({score:0}).animate(({score:response.score}),{
+        duration: 2000,
+        progress: function(){
+          var resultScore = this.score;
+          $('#answer-score').text(Math.ceil(resultScore));
+
+          if (resultScore>=0){
+            $('#answer-score').css({
+              "color":"green"});
+          }else{
+            $('#answer-score').css({
+              "color":"red"
+            })
+          }
+        }   
+      });
+      
+
     },
     error: function (response) {
 
     },
     complete: function () {
-
+      $('#button_next').css({
+        visibility:"visible"
+      })
 
     }
 })
@@ -426,6 +473,12 @@ function nextQuiz(){
 
 };
  
+
+var progressWrap = $('.progress-bar')
+var progressBar = progressWrap.find('.bar')
+var progressText = progressWrap.find('.rate')
+var progressRate = progressText.attr('data-rate')
+progressBar.animate({width:progressRate*10 +"%"},500)
 
 {% comment %} function loadingBar(){  
   var progressWrap = $('.progress-bar')

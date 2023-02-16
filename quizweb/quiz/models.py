@@ -12,7 +12,7 @@ class QuizSet(models.Model):
     num         = models.IntegerField() #퀴즈 순번
     
     
-class rank(models.Model):
+class Rank(models.Model):
     id     = models.IntegerField(primary_key=True) # 퀴즈 id
     stage  = models.IntegerField() # 클리어 라운드
     point  = models.IntegerField() # 점수

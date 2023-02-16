@@ -37,6 +37,35 @@
   href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Material+Symbols+Outlined"
   rel="stylesheet">
 
+  <!--Kakao공유하기-->
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <!-- Jquery-->
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  {% comment %} <script>
+  // init 체크
+  if (!Kakao.isInitialized()) {
+  Kakao.init('7f1be51dd440ca45181dd0805818f2c9');
+  }
+
+
+    function sendKakao() {
+       // 메시지 공유 함수
+     Kakao.Link.sendScrap({
+       requestUrl: 'http://how-much-quiz.shop', // 페이지 url
+       templateId: 866031, // 메시지템플릿 번호
+       templateArgs: {
+               PROFILE : '프로필 이미지 주소' // 프로필 이미지 주소 ${PROFILE}
+         THUMB: ${THUMB}, // 썸네일 주소 ${THUMB}
+         TITLE: ${TITLE}, // 제목 텍스트 ${TITLE}
+         DESC: ${DESC}, // 설명 텍스트 ${DESC}
+       },
+     });
+   };
+     </script> {% endcomment %}
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -85,11 +114,14 @@
 
   <div class="position-relative overflow-hidden p-2 p-md-2 m-md-2 text-center bg-light" >
       <div class="col-md-5 p-lg-5 mx-auto my-5" >
-        <h1 class="display-1 fw-normal" style="font-family: 'Jua', sans-serif;">HOW MUCH?</h1>
-        <h1 class="display-5 fw-normal" style="font-family: 'Jua', sans-serif; margin-top:20px;">상품 가격맞추기</h1>
-        <p class="lead fw-normal" style="margin-top:20px; color:gray; font-size:14px;">세상물정을 아는것이 힘이다.</p>
-        <a class="btn btn-outline-primary" style="margin-top:150px; width:200px;" href="quiz"> 게임 시작!</a>
-
+        <h1 class="display-1 fw-normal" >최종 점수</h1>
+        <h1 id="result-score" class="display-1 fw-normal" style="font-family: 'Jua', sans-serif; margin-top:20px; font-size:100px;">{{now_score}}</h1>
+        <h1 id="result-score-temp" style="display:none;">{{now_score}}</h1>
+        <h5 id="mean-score"> 평균점수 {{mean_score}}</h5>
+        <h1 class="display-5 fw-normal" style=" margin-top:20px; color:gray; font-size:15px;">{{tip}}</h1>
+        <div class="d-flex flex-row justify-content-center">
+          <a class="btn btn-outline-primary" style="margin-top:150px; width:200px;" href=".."> 다시하기</a>
+          {% comment %} <a class="btn btn-danger"   id="kakao-link-btn"    onclick="shareKakao()" style="margin-top:150px; width:200px;" > 공유하기</a>  {% endcomment %}
       </div>
     <div class="product-device shadow-sm d-none d-md-block"></div>
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
@@ -99,23 +131,73 @@
 </footer>
 
 
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   <!--하단 광고 -->
-  <div style="display:flex; flex-direction:column; justify-content:center; text-align:center;">
+  <div style="display:flex; flex-direction:column; justify-content:center;">
     <ins class="kakao_ad_area" style="display:none;  margin-left: auto; margin-right: auto;"
     data-ad-unit = "DAN-OglmPua1gIKs0P1F"
     data-ad-width = "250"
     data-ad-height = "250"></ins>
     <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 
-    <ins class="kakao_ad_area" style="display:none;  margin-left: auto; margin-right: auto;"
+    <ins class="kakao_ad_area" style="display:none;"
     data-ad-unit = "DAN-I9jpJgiDXeZX3kqi"
     data-ad-width = "320"
     data-ad-height = "100"></ins>
     <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 
+  <!--카카오톡 공유버튼 설정-->
+
+  
+
+
+  <script>
+    
+
+  // 점수 불러오기
+  $({score:0}).animate(({score:$('#result-score-temp').text()}),{
+    duration: 3000,
+    progress: function(){
+      var resultScore = this.score;
+      $('#result-score').text(Math.ceil(resultScore));
+    }
+  });
+
+
+
+var score  = $('#result-score-temp').text()
+
+let fd = new FormData();
+fd.append('score', score);
+
+$.ajax({
+  url: "/quiz/uploadscore",
+  data: fd,
+  method: "POST",
+  processData: false,
+  contentType: false,
+  success: function (status) {
+
+  },
+  error: function (status) {
+
+  },
+  complete: function () {
+      
+
+  }
+})
+
+
+
+
+  </script>
 
   </div>
+
+  
       
   </body>
 </html>
+
