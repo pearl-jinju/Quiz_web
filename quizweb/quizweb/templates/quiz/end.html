@@ -79,6 +79,26 @@
         vertical-align: -.125em;
         fill: currentColor;
       }
+      .progress-bar {
+        position: relative;
+        width: 70%; height:20px;
+        margin: 0.7em auto;
+        border: 1px solid rgba(255,52,120);
+        border-radius:20px;
+      }
+      .bar{
+        position:absolute;
+        left:0; top:0; bottom:0; width:0;
+        background:rgba(255,52,120);
+      }
+      
+      .rate{
+        position:absolute;
+         top:0; bottom:0; right:15px;
+        font-size:0.8em; color:rgba(255,52,120);
+        font-weight:bold;
+        line-height:20px;
+      }
 
 
     </style>
@@ -101,7 +121,7 @@
         <h1 class="display-3 fw-normal" >최종 점수</h1>
         <h1 id="result-score" class="display-1 fw-normal" style="font-family: 'Jua', sans-serif; margin-top:20px; font-size:95px;">{{now_score}}</h1>
         <h1 id="result-score-temp" style="display:none;">{{now_score}}</h1>
-        <h5 id="mean-score" style="color:gray;"> 평균 점수 {{mean_score}}</h5>
+        <h5 id="mean-score" style="color:gray;"> 평균 점수 {{mean_score}} <b style="color:gray; font-size:12px;">({{users}}명 참여)</b></h5>
         <img id="result-image" src="" style="height:80%; width:80%; border-radius:16px; margin-top:20px;">
         <div class="d-flex flex-row justify-content-center">
           
@@ -195,6 +215,95 @@
     data-ad-width = "250"
     data-ad-height = "250"></ins>
     <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+    <h1 class="display-3 fw-normal" style="margin-top:20px; margin-bottom:50px;">점수 분포표</h1>
+    <div style="margin-left:10%;">
+      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 물가 전문가 (500↑)</div>
+      <div>       
+        <div class="progress-bar progress-bar1">
+          <div class="bar bar1"></div>
+          <div class="rate rate1" data-rate={{score_dict.over500}} >{{score_dict.over500}}명</div>
+        </div>  
+      </div>
+
+      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 전자 두뇌 (300~499)</div>
+      <div>       
+        <div class="progress-bar progress-bar2">
+          <div class="bar bar2"></div>
+          <div class="rate rate2" data-rate={{score_dict.over300}} >{{score_dict.over300}}명</div>
+        </div>  
+      </div>
+
+      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 알뜰살뜰형 인간 (150~299)</div>
+      <div>       
+        <div class="progress-bar progress-bar3">
+          <div class="bar bar3"></div>
+          <div class="rate rate3" data-rate={{score_dict.over150}} >{{score_dict.over150}}명</div>
+        </div>  
+      </div>
+
+      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 가격표는 보는 사람 (50~149)</div>
+      <div>       
+        <div class="progress-bar progress-bar4">
+          <div class="bar bar4"></div>
+          <div class="rate rate4" data-rate={{score_dict.over50}} >{{score_dict.over50}}명</div>
+        </div>  
+      </div>
+
+      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 영수증이 뭐죠 (0~49)</div>
+      <div>       
+        <div class="progress-bar progress-bar5">
+          <div class="bar bar5"></div>
+          <div class="rate rate5" data-rate={{score_dict.over0}} >{{score_dict.over0}}명</div>
+        </div>  
+      </div>
+
+      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 영수증은 버려주세요 (-100~-1)</div>
+      <div>       
+        <div class="progress-bar progress-bar6">
+          <div class="bar bar6"></div>
+          <div class="rate rate6" data-rate={{score_dict.over_100}} >{{score_dict.over_100}}명</div>
+        </div>  
+      </div>
+
+      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 심부름시키면 안되는 사람 (-300~-99)</div>
+      <div>       
+        <div class="progress-bar progress-bar7">
+          <div class="bar bar7"></div>
+          <div class="rate rate7" data-rate={{score_dict.over_300}} >{{score_dict.over_300}}명</div>
+        </div>  
+      </div>
+
+      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 가격표 안보는 사람 (-500~-299)</div>
+      <div>       
+        <div class="progress-bar progress-bar8">
+          <div class="bar bar8"></div>
+          <div class="rate rate8" data-rate={{score_dict.over_500}} >{{score_dict.over_500}}명</div>
+        </div>  
+      </div>
+
+      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 총무하면 큰일날 사람 (-700~-499)</div>
+      <div>       
+        <div class="progress-bar progress-bar9">
+          <div class="bar bar9"></div>
+          <div class="rate rate9" data-rate={{score_dict.over_700}} >{{score_dict.over_700}}명</div>
+        </div>  
+      </div>
+
+      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 세상물정 모르는 사람 (-701↓)</div>
+      <div>       
+        <div class="progress-bar progress-bar10">
+          <div class="bar bar10"></div>
+          <div class="rate rate10" data-rate={{score_dict.over_2000}} >{{score_dict.over_2000}}명</div>
+        </div>  
+      </div>
+
+      <div id="score_all" style="display:none;">{{score_dict.all}}</div>
+    </div>
+
+
+    <h1 class="display-3 fw-normal" style="margin-top:20px; margin-bottom:50px;">점수 기준표</h1>
+
+    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbct1eg%2Fbtr0fUk9dCx%2FrQkyKCtnF9arqbuazFQr1k%2Fimg.png" style="height:100%; width:100%; max-width:550px; border-radius:16px;  margin:auto;">
 
     <ins class="kakao_ad_area" style="display:none;"
     data-ad-unit = "DAN-I9jpJgiDXeZX3kqi"
@@ -203,6 +312,9 @@
     <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 
   <!--카카오톡 공유버튼 설정-->
+
+
+            
 
   
 
@@ -244,6 +356,117 @@ $.ajax({
   }
 })
 
+let allUser = parseInt($("#score_all").html())
+
+var progressWrap_1 = $('.progress-bar1')
+var progressBar_1 = progressWrap_1.find('.bar1')
+var progressText_1 = progressWrap_1.find('.rate1')
+var progressRate_1 = progressText_1.attr('data-rate')
+if (progressRate_1==0){
+  progressBar_1.animate({width:0 +"%"},500)
+}else{
+  var resultRate_1 = (progressRate_1/allUser)*100
+  progressBar_1.animate({width:resultRate_1 +"%"},500)
+}
+
+var progressWrap_2 = $('.progress-bar2')
+var progressBar_2 = progressWrap_2.find('.bar2')
+var progressText_2 = progressWrap_2.find('.rate2')
+var progressRate_2 = progressText_2.attr('data-rate')
+if (progressRate_2==0){
+  progressBar_2.animate({width:0 +"%"},500)
+}else{
+  var resultRate_2 = (progressRate_2/allUser)*100
+  progressBar_2.animate({width:resultRate_2 +"%"},500)
+}
+
+var progressWrap_3 = $('.progress-bar3')
+var progressBar_3 = progressWrap_3.find('.bar3')
+var progressText_3 = progressWrap_3.find('.rate3')
+var progressRate_3 = progressText_3.attr('data-rate')
+if (progressRate_3==0){
+  progressBar_3.animate({width:0 +"%"},500)
+}else{
+  var resultRate_3 = (progressRate_3/allUser)*100
+  progressBar_3.animate({width:resultRate_3 +"%"},500)
+}
+
+var progressWrap_4 = $('.progress-bar4')
+var progressBar_4 = progressWrap_4.find('.bar4')
+var progressText_4 = progressWrap_4.find('.rate4')
+var progressRate_4 = progressText_4.attr('data-rate')
+if (progressRate_4==0){
+  progressBar_4.animate({width:0 +"%"},500)
+}else{
+  var resultRate_4 = (progressRate_4/allUser)*100
+  progressBar_4.animate({width:resultRate_4 +"%"},500)
+}
+
+var progressWrap_5 = $('.progress-bar5')
+var progressBar_5 = progressWrap_5.find('.bar5')
+var progressText_5 = progressWrap_5.find('.rate5')
+var progressRate_5 = progressText_5.attr('data-rate')
+if (progressRate_5==0){
+  progressBar_5.animate({width:0 +"%"},500)
+}else{
+  var resultRate_5 = (progressRate_5/allUser)*100
+  progressBar_5.animate({width:resultRate_5 +"%"},500)
+}
+
+var progressWrap_6 = $('.progress-bar6')
+var progressBar_6 = progressWrap_6.find('.bar6')
+var progressText_6 = progressWrap_6.find('.rate6')
+var progressRate_6 = progressText_6.attr('data-rate')
+if (progressRate_6==0){
+  progressBar_6.animate({width:0 +"%"},500)
+}else{
+  var resultRate_6 = (progressRate_6/allUser)*100
+  progressBar_6.animate({width:resultRate_6 +"%"},500)
+}
+
+var progressWrap_7 = $('.progress-bar7')
+var progressBar_7 = progressWrap_7.find('.bar7')
+var progressText_7 = progressWrap_7.find('.rate7')
+var progressRate_7 = progressText_7.attr('data-rate')
+if (progressRate_7==0){
+  progressBar_7.animate({width:0 +"%"},500)
+}else{
+  var resultRate_7 = (progressRate_7/allUser)*100
+  progressBar_7.animate({width:resultRate_7 +"%"},500)
+}
+
+var progressWrap_8 = $('.progress-bar8')
+var progressBar_8 = progressWrap_8.find('.bar8')
+var progressText_8 = progressWrap_8.find('.rate8')
+var progressRate_8 = progressText_8.attr('data-rate')
+if (progressRate_8==0){
+  progressBar_8.animate({width:0 +"%"},500)
+}else{
+  var resultRate_8 = (progressRate_8/allUser)*100
+  progressBar_8.animate({width:resultRate_8 +"%"},500)
+}
+
+var progressWrap_9 = $('.progress-bar9')
+var progressBar_9 = progressWrap_9.find('.bar9')
+var progressText_9 = progressWrap_9.find('.rate9')
+var progressRate_9 = progressText_9.attr('data-rate')
+if (progressRate_9==0){
+  progressBar_9.animate({width:0 +"%"},500)
+}else{
+  var resultRate_9 = (progressRate_9/allUser)*100
+  progressBar_9.animate({width:resultRate_9 +"%"},500)
+}
+
+var progressWrap_10 = $('.progress-bar10')
+var progressBar_10 = progressWrap_10.find('.bar10')
+var progressText_10 = progressWrap_10.find('.rate10')
+var progressRate_10 = progressText_10.attr('data-rate')
+if (progressRate_10==0){
+  progressBar_10.animate({width:0 +"%"},500)
+}else{
+  var resultRate_10 = (progressRate_10/allUser)*100
+  progressBar_10.animate({width:resultRate_10 +"%"},500)
+}
 
 
 

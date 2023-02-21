@@ -21,10 +21,12 @@ class Quiz(APIView):
     def get(self, request): 
         # 문제종료 조건 체크
         
-        
-
         now_score = request.session.get('now_score', 0) 
         mean_score = round(Rank.objects.aggregate(point = Avg('point'))['point'],1)
+        
+        # 플레이 인원
+        users = Rank.objects.all().count()
+        print(users)
         
         #문제의 순번을 받음
         quiz_count = request.session.get('quiz_count', 0) 
@@ -46,14 +48,49 @@ class Quiz(APIView):
             "tip : 버튼클릭으로만 작성해야합니다.",
         ]
         
+        #점수분포표
+        all = Rank.objects.all().count()
+        over500 = Rank.objects.filter(point__gte=500).count()
+        over300 = Rank.objects.filter(point__lt=500, point__gte=300).count()
+        over150 = Rank.objects.filter(point__lt=300, point__gte=150).count()
+        over50 = Rank.objects.filter(point__lt=150, point__gte=50).count()
+        over0 = Rank.objects.filter(point__lt=50, point__gte=0).count()
+        over_100 = Rank.objects.filter(point__lt=0, point__gte=-100).count()
+        over_300 = Rank.objects.filter(point__lt=-100, point__gte=-300).count()
+        over_500 = Rank.objects.filter(point__lt=-300, point__gte=-500).count()
+        over_700 = Rank.objects.filter(point__lt=-500, point__gte=-700).count()
+        over_2000 = Rank.objects.filter(point__lt=-700, point__gte=-2000).count()
+        
+        score_dict={
+            "all":all,
+            "over500":over500,
+            "over300":over300,
+            "over150":over150,
+            "over50":over50,
+            "over0":over0,
+            "over_100":over_100,
+            "over_300":over_300,
+            "over_500":over_500,
+            "over_700":over_700,
+            "over_2000":over_2000,
+        }
+        
+        
+        # tip 메세지
         tip = random.sample(tip_list, k=1)[0]
         
         if request.session['quiz_count']>=11:
             
 
-            return render(request,'quiz/end.html', context=dict(quiz_count = quiz_count,now_score=now_score, mean_score=mean_score, tip=tip),status=200) #context html로 넘길것 context=dict(mainfeeds=df)
-            
-
+            return render(request,'quiz/end.html', context=dict(
+                                                                quiz_count=quiz_count,
+                                                                now_score=now_score,
+                                                                users=users,
+                                                                mean_score=mean_score,
+                                                                tip=tip,
+                                                                score_dict=score_dict,
+                                                                ),status=200) #context html로 넘길것 context=dict(mainfeeds=df)
+        
         # 랜덤하게 문제가 나오도록 설계
         # 문제의 순번들을 저장함
         quiz_num_list = request.session.get('quiz_num_list',[])
@@ -75,7 +112,6 @@ class Quiz(APIView):
                 break
                 
         request.session['quiz_num_list'] = quiz_num_list
-        
         request.session['quiz_num'] = quiz_num
         
         # quiz_num_list.append(int(quiz_num))
@@ -86,7 +122,12 @@ class Quiz(APIView):
         quizset = QuizSet.objects.filter(quiz_id= quiz_num).first()
         
         # DB 내 queryset 호출
-        return render(request,'quiz/quiz.html', context=dict(quizset = quizset,now_score=now_score, tip=tip, round_rate=request.session['quiz_count']*10 ,round=request.session['quiz_count']),status=200) #context html로 넘길것 context=dict(mainfeeds=df)
+        return render(request,'quiz/quiz.html', context=dict(
+                                                             quizset=quizset,
+                                                             now_score=now_score,
+                                                             tip=tip,
+                                                             round_rate=request.session['quiz_count']*10 ,
+                                                             round=request.session['quiz_count']),status=200) #context html로 넘길것 context=dict(mainfeeds=df)
 
 class CheckAnswer(APIView):
     def get(self, request): 
@@ -144,13 +185,14 @@ class CheckAnswer(APIView):
             if price==0:
                 score=-250
             
+            
+
        
-        
         result_dict = {
             "quiz_num" : quiz_num,
             "price" : price,
             "answer_price" : answer_price,
-            "score" : score
+            "score" : score,
         }
 
         
