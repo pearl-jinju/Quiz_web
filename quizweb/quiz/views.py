@@ -22,11 +22,11 @@ class Quiz(APIView):
         # 문제종료 조건 체크
         
         now_score = request.session.get('now_score', 0) 
-        mean_score = round(Rank.objects.aggregate(point = Avg('point'))['point'],1)
+        # 아웃라이어 삭제 기능
+        mean_score = round(Rank.objects.filter(point__lt=1001,point__gte=-2000).aggregate(point = Avg('point'))['point'],1)
         
         # 플레이 인원
         users = Rank.objects.all().count()
-        print(users)
         
         #문제의 순번을 받음
         quiz_count = request.session.get('quiz_count', 0) 
