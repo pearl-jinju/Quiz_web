@@ -13,21 +13,21 @@ import random
 class Main(APIView):
     def get(self, request): 
         request.session.flush()
-
-            
+           
         return render(request,'quiz/index.html',status=200) #context html로 넘길것 context=dict(mainfeeds=df)
     
 class Quiz(APIView):
     def get(self, request): 
         # 문제종료 조건 체크
         
+    
         now_score = request.session.get('now_score', 0) 
         # 아웃라이어 삭제 기능
         mean_score = round(Rank.objects.filter(point__lt=1001,point__gte=-2000).aggregate(point = Avg('point'))['point'],1)
         
         # 플레이 인원
-        users = Rank.objects.all().count()
-        
+        users = Rank.objects.filter(point__lt=1001,point__gte=-2000).count()
+                
         #문제의 순번을 받음
         quiz_count = request.session.get('quiz_count', 0) 
         request.session['quiz_count'] = int(quiz_count)+1
@@ -183,7 +183,10 @@ class CheckAnswer(APIView):
                 score=100
             # 대충 하는 유저에 대한 패널티
             if price==0:
-                score=-250
+                score=-200
+                
+        if abs(score)%5!=0:
+            return Response(status=400)
             
             
 
