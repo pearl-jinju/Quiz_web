@@ -118,11 +118,14 @@
 
   <div id "main-body" class="position-relative overflow-hidden p-2 p-md-2 m-md-2 text-center bg-light"  >
       <div class="col-md-5 p-lg-4 mx-auto my-5" >
-        <h1 class="display-3 fw-normal" >최종 점수</h1>
-        <h1 id="result-score" class="display-1 fw-normal" style="font-family: 'Jua', sans-serif; margin-top:20px; font-size:95px;">{{now_score}}</h1>
+        <div>
+        </div>
+
+        <h1 class="display-4 fw-bold">최종 점수</h1>
+        <h1 id="result-score" class="display-1 fw-normal" style="font-family: 'Jua', sans-serif; margin-top:20px; font-size:85px;">{{now_score}}</h1>
         <h1 id="result-score-temp" style="display:none;">{{now_score}}</h1>
         <h5 id="mean-score" style="color:gray;"> 평균 점수 {{mean_score}} <b style="color:gray; font-size:12px;">({{users}}명 참여)</b></h5>
-        <img id="result-image" src="" style="height:80%; width:80%; border-radius:16px; margin-top:20px;">
+        <img id="result-image" src="" style="height:65%; width:65%; border-radius:16px; margin-top:20px;">
         <div class="d-flex flex-row justify-content-center">
           
           <a class="btn btn-outline-primary" style="margin-top:30px; width:200px;" href=".."> 다시하기</a>
@@ -208,16 +211,18 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  <!--하단 광고 -->
+ 
+    <h1 class="display-4 fw-bold" style="margin-top:5px; margin-bottom:15px;">점수 분포표<div style="color:gray; font-size:15px;">(다른사람들의 점수는?)</div></h1>
+<!--하단 광고 -->
   <div style="display:flex; flex-direction:column; justify-content:center;">
     <ins class="kakao_ad_area" style="display:none;  margin-left: auto; margin-right: auto;"
     data-ad-unit = "DAN-OglmPua1gIKs0P1F"
     data-ad-width = "250"
     data-ad-height = "250"></ins>
     <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-    <h1 class="display-3 fw-normal" style="margin-top:20px; margin-bottom:50px;">점수 분포표</h1>
+
     <div style="margin-left:10%;">
-      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 물가 전문가 (500↑)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 물가 전문가 (500↑)</div>
       <div>       
         <div class="progress-bar progress-bar1">
           <div class="bar bar1"></div>
@@ -225,7 +230,7 @@
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 전자 두뇌 (300~499)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 전자 두뇌 (300~499)</div>
       <div>       
         <div class="progress-bar progress-bar2">
           <div class="bar bar2"></div>
@@ -233,7 +238,7 @@
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 알뜰살뜰형 인간 (150~299)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 알뜰살뜰형 인간 (150~299)</div>
       <div>       
         <div class="progress-bar progress-bar3">
           <div class="bar bar3"></div>
@@ -241,7 +246,7 @@
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 가격표는 보는 사람 (50~149)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 가격표는 보는 사람 (50~149)</div>
       <div>       
         <div class="progress-bar progress-bar4">
           <div class="bar bar4"></div>
@@ -249,7 +254,7 @@
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 영수증이 뭐죠 (0~49)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 영수증이 뭐죠 (0~49)</div>
       <div>       
         <div class="progress-bar progress-bar5">
           <div class="bar bar5"></div>
@@ -257,7 +262,7 @@
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 영수증은 버려주세요 (-100~-1)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 영수증은 버려주세요 (-100~-1)</div>
       <div>       
         <div class="progress-bar progress-bar6">
           <div class="bar bar6"></div>
@@ -265,7 +270,7 @@
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 심부름시키면 안되는 사람 (-300~-99)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 심부름시키면 안되는 사람 (-300~-99)</div>
       <div>       
         <div class="progress-bar progress-bar7">
           <div class="bar bar7"></div>
@@ -273,7 +278,7 @@
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 가격표 안보는 사람 (-500~-299)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 가격표 안보는 사람 (-500~-299)</div>
       <div>       
         <div class="progress-bar progress-bar8">
           <div class="bar bar8"></div>
@@ -281,7 +286,7 @@
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 총무하면 큰일날 사람 (-700~-499)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 총무하면 큰일날 사람 (-700~-499)</div>
       <div>       
         <div class="progress-bar progress-bar9">
           <div class="bar bar9"></div>
@@ -289,7 +294,7 @@
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:14px; font-weight:bold; width:75%;"> 세상물정 모르는 사람 (-701↓)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 세상물정 모르는 사람 (-701↓)</div>
       <div>       
         <div class="progress-bar progress-bar10">
           <div class="bar bar10"></div>
@@ -301,15 +306,25 @@
     </div>
 
 
-    <h1 class="display-3 fw-normal" style="margin-top:20px; margin-bottom:50px;">점수 기준표</h1>
+    <h1 class="display-3 fw-bold" style="margin-top:20px; margin-bottom:50px;">점수 기준표</h1>
 
     <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbct1eg%2Fbtr0fUk9dCx%2FrQkyKCtnF9arqbuazFQr1k%2Fimg.png" style="height:100%; width:100%; max-width:550px; border-radius:16px;  margin:auto;">
 
-    <ins class="kakao_ad_area" style="display:none;"
-    data-ad-unit = "DAN-I9jpJgiDXeZX3kqi"
-    data-ad-width = "320"
-    data-ad-height = "100"></ins>
-    <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+    <div>
+      <ins class="kakao_ad_area" style="display:none;"
+      data-ad-unit = "DAN-I9jpJgiDXeZX3kqi"
+      data-ad-width = "320"
+      data-ad-height = "100"></ins>
+      <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+    </div>
+
+    <div>
+      <ins class="kakao_ad_area" style="display:none;"
+      data-ad-unit = "DAN-ZrFEUSuQ9T8sdbkH"
+      data-ad-width = "320"
+      data-ad-height = "50"></ins>
+      <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+    </div>
 
   <!--카카오톡 공유버튼 설정-->
 
