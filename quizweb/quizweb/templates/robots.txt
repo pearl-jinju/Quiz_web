@@ -1,0 +1,11 @@
+User-agent: *
+Allow:/
+Disallow: /admin
+Disallow: quiz
+Disallow: quiz/check
+Disallow: quiz/score
+Disallow: quiz/uploadscore
+Disallow: quiz/survive
+Disallow: quiz/admin
+
+Sitemap: http://how-much-quiz.shop/
