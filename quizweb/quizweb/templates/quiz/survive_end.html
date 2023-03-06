@@ -83,19 +83,19 @@
         position: relative;
         width: 70%; height:20px;
         margin: 0.7em auto;
-        border: 1px solid rgba(255,52,120);
+        border: 1px solid #FF6256;
         border-radius:20px;
       }
       .bar{
         position:absolute;
         left:0; top:0; bottom:0; width:0;
-        background:rgba(255,52,120);
+        background:#FF6256;
       }
       
       .rate{
         position:absolute;
          top:0; bottom:0; right:15px;
-        font-size:0.8em; color:rgba(255,52,120);
+        font-size:0.8em; color:black;
         font-weight:bold;
         line-height:20px;
       }
@@ -120,9 +120,9 @@
       <div class="col-md-5 p-lg-4 mx-auto my-5" >
         <div>
         </div>
-        <h1 class="display-4 fw-bold">최종 단계</h1>
+        <h1 class="display-4 fw-bold"> 최종 단계</h1>
         <div style="display:flex; flex-direction:row; justify-content:center;"> <div class="display-4 fw-bold" id="stage" style="font-family: 'Jua', sans-serif; margin-top:20px; font-size:60px;">{{quiz_count}} </div> <h1 class="display-4 fw-bold" style="font-family: 'Jua', sans-serif; margin-top:20px; font-size:60px;"> 단계</h1></div>
-        <h5 id="mean-score" style="color:gray;"> 평균 점수 {{mean_score}} <b style="color:gray; font-size:12px;">({{users}}명 참여)</b></h5>
+        <h5 id="mean-score" style="color:gray;"> 평균 {{mean_stages}}단계 <b style="color:gray; font-size:12px;">({{users}}명 참여)</b></h5>
         <img id="result-image" src="" style="height:65%; width:65%; border-radius:16px; margin-top:20px;">
         <div class="d-flex flex-row justify-content-center">
           
@@ -132,19 +132,19 @@
             var showStage = $('#stage').text()
             let nickname =" ";
             let resultImgage = ""
-            if (showStage>=45){
+            if (showStage>=75){
               nickname = "[물가 전문가]"
               resultImgage = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FF7tPv%2FbtrZuD0v5AB%2FOk02P7apmmH8zrAC4gkQ81%2Fimg.png"
-            }else if(showStage>=40){
+            }else if(showStage>=60){
               nickname = "[전자 두뇌]"
               resultImgage = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FGaBGf%2FbtrZy9EBP2z%2FXIHpGgUzN48kgsQGmgvgUK%2Fimg.png"
-            }else if(showStage>=35){
+            }else if(showStage>=50){
               nickname = "[알뜰살뜰형 인간]"
               resultImgage = "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fx0Scw%2FbtrZD0Z5S6H%2FR3UQNjFedeWRJ0sTjso5jK%2Fimg.png"
-            }else if(showStage>=30){
+            }else if(showStage>=40){
               nickname = "[가격표는 보는 사람]"
               resultImgage ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcIzkMi%2FbtrZC4atIgq%2FmJkFKLxfoPanqKSILaCxL1%2Fimg.png"
-            }else if(showStage>=25){
+            }else if(showStage>=30){
               nickname = "[영수증이 뭐죠?]"
               resultImgage ="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbNoM1Y%2FbtrZB3QrtYQ%2F7JXTKTy4AVqghABYYcbB0K%2Fimg.png"
             }else if(showStage>=20){
@@ -177,7 +177,7 @@
               container: '#kakaotalk-sharing-btn',
               objectType: 'feed',
               content: {
-                title: '내 등급 : '+nickname+"\n"+"점수:  "+ $('#result-score-temp').html(),
+                title: '내 등급 : '+nickname+"\n"+"최종 단계:  "+ $('#stage').html(),
                 description: '나는 세상물정을 잘 아는가?',
                 imageUrl: resultImgage,
                 link: {
@@ -210,7 +210,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
  
-    <h1 class="display-4 fw-bold" style="margin-top:5px; margin-bottom:15px;">점수 분포표<div style="color:gray; font-size:15px;">(다른사람들의 점수는?)</div></h1>
+<h1 class="display-4 fw-bold" style="margin-top:5px; margin-bottom:15px; background-color:#5055F2; border-radius:25px; color:white; padding:10px;"><div style="color:white; font-size:15px;">(다른사람들의 점수는?)</div>점수 분포표</h1>
 <!--하단 광고 -->
   <div style="display:flex; flex-direction:column; justify-content:center;">
     <ins class="kakao_ad_area" style="display:none;  margin-left: auto; margin-right: auto;"
@@ -220,93 +220,93 @@
     <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 
     <div style="margin-left:10%;">
-      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 물가 전문가 (500↑)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 물가 전문가 (75↑)</div>
       <div>       
         <div class="progress-bar progress-bar1">
           <div class="bar bar1"></div>
-          <div class="rate rate1" data-rate={{score_dict.over500}} >{{score_dict.over500}}명</div>
+          <div class="rate rate1" data-rate={{level_dict.level10}} >{{level_dict.level10}}명</div>
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 전자 두뇌 (300~499)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 전자 두뇌 (60~74)</div>
       <div>       
         <div class="progress-bar progress-bar2">
           <div class="bar bar2"></div>
-          <div class="rate rate2" data-rate={{score_dict.over300}} >{{score_dict.over300}}명</div>
+          <div class="rate rate2" data-rate={{level_dict.level9}} >{{level_dict.level9}}명</div>
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 알뜰살뜰형 인간 (150~299)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 알뜰살뜰형 인간 (50~59)</div>
       <div>       
         <div class="progress-bar progress-bar3">
           <div class="bar bar3"></div>
-          <div class="rate rate3" data-rate={{score_dict.over150}} >{{score_dict.over150}}명</div>
+          <div class="rate rate3" data-rate={{level_dict.level8}} >{{level_dict.level8}}명</div>
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 가격표는 보는 사람 (50~149)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 가격표는 보는 사람 (40~49)</div>
       <div>       
         <div class="progress-bar progress-bar4">
           <div class="bar bar4"></div>
-          <div class="rate rate4" data-rate={{score_dict.over50}} >{{score_dict.over50}}명</div>
+          <div class="rate rate4" data-rate={{level_dict.level7}} >{{level_dict.level7}}명</div>
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 영수증이 뭐죠 (0~49)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 영수증이 뭐죠 (30~39)</div>
       <div>       
         <div class="progress-bar progress-bar5">
           <div class="bar bar5"></div>
-          <div class="rate rate5" data-rate={{score_dict.over0}} >{{score_dict.over0}}명</div>
+          <div class="rate rate5" data-rate={{level_dict.level6}} >{{level_dict.level6}}명</div>
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 영수증은 버려주세요 (-100~-1)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 영수증은 버려주세요 (20~-29)</div>
       <div>       
         <div class="progress-bar progress-bar6">
           <div class="bar bar6"></div>
-          <div class="rate rate6" data-rate={{score_dict.over_100}} >{{score_dict.over_100}}명</div>
+          <div class="rate rate6" data-rate={{level_dict.level5}} >{{level_dict.level5}}명</div>
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 심부름시키면 안되는 사람 (-300~-101)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 심부름시키면 안되는 사람 (15~19)</div>
       <div>       
         <div class="progress-bar progress-bar7">
           <div class="bar bar7"></div>
-          <div class="rate rate7" data-rate={{score_dict.over_300}} >{{score_dict.over_300}}명</div>
+          <div class="rate rate7" data-rate={{level_dict.level4}} >{{level_dict.level4}}명</div>
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 가격표 안보는 사람 (-500~-301)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 가격표 안보는 사람 (10~14)</div>
       <div>       
         <div class="progress-bar progress-bar8">
           <div class="bar bar8"></div>
-          <div class="rate rate8" data-rate={{score_dict.over_500}} >{{score_dict.over_500}}명</div>
+          <div class="rate rate8" data-rate={{level_dict.level3}} >{{level_dict.level3}}명</div>
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 총무하면 큰일날 사람 (-700~-501)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 총무하면 큰일날 사람 (6~9)</div>
       <div>       
         <div class="progress-bar progress-bar9">
           <div class="bar bar9"></div>
-          <div class="rate rate9" data-rate={{score_dict.over_700}} >{{score_dict.over_700}}명</div>
+          <div class="rate rate9" data-rate={{level_dict.level2}} >{{level_dict.level2}}명</div>
         </div>  
       </div>
 
-      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 세상물정 모르는 사람 (-701↓)</div>
+      <div style="margin-right:50%; color:gray; font-size:12px; font-weight:bold; width:75%;"> 세상물정 모르는 사람 (5↓)</div>
       <div>       
         <div class="progress-bar progress-bar10">
           <div class="bar bar10"></div>
-          <div class="rate rate10" data-rate={{score_dict.over_2000}} >{{score_dict.over_2000}}명</div>
+          <div class="rate rate10" data-rate={{level_dict.level1}} >{{level_dict.level1}}명</div>
         </div>  
       </div>
 
-      <div id="score_all" style="display:none;">{{score_dict.all}}</div>
+      <div id="score_all" style="display:none;">{{level_dict.all}}</div>
     </div>
 
 
-    <h1 class="display-3 fw-bold" style="margin-top:20px; margin-bottom:50px;">점수 기준표</h1>
+    <h1 class="display-3 fw-bold" style="margin-top:20px; margin-bottom:15px; background-color:#5055F2; border-radius:25px; color:white; padding:10px;">점수 기준표</h1>
 
-    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbct1eg%2Fbtr0fUk9dCx%2FrQkyKCtnF9arqbuazFQr1k%2Fimg.png" style="height:100%; width:100%; max-width:550px; border-radius:16px;  margin:auto;">
+    <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FEw1yR%2Fbtr1QwKfD9l%2FlOz0dRvd5SOAtfpEyXc99K%2Fimg.png" style="height:100%; width:100%; max-width:550px; border-radius:16px;  margin:auto;">
 
     <!--광고-->
     <div>
@@ -327,27 +327,15 @@
 
   <!--카카오톡 공유버튼 설정-->
 
-  <h1 class="display-3 fw-bold" style="margin-top:20px; margin-bottom:50px;">명예의 전당</h1>
-
+  <h1 class="display-3 fw-bold" style="margin-top:20px; margin-bottom:50px; background-color:#5055F2; border-radius:25px; color:white; padding:10px;">명예의 전당</h1>
+{% comment %} 
   <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbzXooz%2Fbtr01TzqHSN%2Fbip4p2Iqk3KR7UaxLfQTq0%2Fimg.png" style="height:30%; width:30%; max-width:200px; border-radius:16px;  margin:auto;">
-  <div style="margin-top:20px; margin-bottom:50px; font-size:15px; font-weight:bold;">침철단 : 295점</div>    
+  <div style="margin-top:20px; margin-bottom:50px; font-size:15px; font-weight:bold;">침철단 : 295점</div>     {% endcomment %}
 
   
 
 
   <script>
-    
-
-  // 점수 불러오기
-  $({score:0}).animate(({score:$('#result-score-temp').text()}),{
-    duration: 4500,
-    progress: function(){
-      var resultScore = this.score;
-      $('#result-score').text(Math.ceil(resultScore));
-    }
-  });
-
-
 
 var stage  = $('#stage').text()
 

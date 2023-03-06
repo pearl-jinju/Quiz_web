@@ -10,9 +10,16 @@ class QuizSet(models.Model):
     img_url     = models.TextField()   # 상품 이미지 url
     url         = models.TextField()   # 상품링크
     num         = models.IntegerField() #퀴즈 순번
+    created_at           = models.DateTimeField(auto_now=True)
     
     
 class Rank(models.Model):
     id     = models.IntegerField(primary_key=True) # 퀴즈 id
     stage  = models.IntegerField() # 클리어 라운드
     point  = models.IntegerField() # 점수
+    created_at           = models.DateTimeField(auto_now=True)
+    
+class RankSurvive(models.Model):
+    id     = models.IntegerField(primary_key=True) # 퀴즈 id
+    stage  = models.IntegerField() # 클리어 라운드
+    created_at           = models.DateTimeField(auto_now=True)

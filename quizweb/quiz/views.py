@@ -34,12 +34,18 @@ tip_list =[
 # Create your views here.
 class Main(APIView):
     """
-    메인 홈페이지 출력 함수
+    메인 홈페이지 출력
     """
     def get(self, request): 
         request.session.flush()
+        
+        normal_user = Rank.objects.filter(point__lt=1001,point__gte=-2000).count()
+        survive_user = RankSurvive.objects.filter(stage__lt=101,stage__gte=1).count()
            
-        return render(request,'quiz/index.html',status=200) #context html로 넘길것 context=dict(mainfeeds=df)
+        return render(request,'quiz/index.html',context=dict(
+                                                            normal_user=normal_user,
+                                                            survive_user=survive_user)
+                                                            , status=200) #context html로 넘길것 context=dict(mainfeeds=df)
     
     
 class Quiz(APIView):
@@ -148,11 +154,12 @@ class Quiz(APIView):
 class CheckAnswer(APIView):
     def get(self, request): 
         # 현재 라운드를 받음
-        quiz_count = int(request.session.get('quiz_count'))
-        # 유저가 입력한 상품정보
-        price = int(request.GET.get('price'))  
+        quiz_count = int(request.session.get('quiz_count',1))
         # quiz id를 받음
         quiz_id = int(request.session.get('quiz_id'))
+        # 유저가 입력한 상품정보
+        price = int(request.GET.get('price'))  
+        print(price)
         # quizset을 가져옴(quizset의 정답(가격)을 가져옴)
         quizset = QuizSet.objects.filter(quiz_id= quiz_id).first()
         answer_price = quizset.price
@@ -224,7 +231,7 @@ class CheckAnswer(APIView):
 class CheckAnswerSurvive(APIView):
     def get(self, request): 
         # 현재 라운드를 받음
-        quiz_count = int(request.session.get('quiz_count'))
+        quiz_count = int(request.session.get('quiz_count',1))
         # 유저가 입력한 상품정보
         price = int(request.GET.get('price'))  
         # quiz id를 받음
@@ -268,15 +275,15 @@ class CheckAnswerSurvive(APIView):
             elif error>=0.20:
                 score= 5
             elif error>=0.15:
-                score= 6
+                score= 7
             elif error>=0.10:
-                score= 8
+                score= 9
             elif error>=0.05:
-                score= 10
+                score= 11
             elif error>=0.03:
-                score= 12
+                score= 13
             elif error>=0.01:
-                score=15
+                score=16
             else:
                 score=15
             # 대충 하는 유저에 대한 패널티
@@ -294,7 +301,7 @@ class CheckAnswerSurvive(APIView):
         }
         #json 형태로 html로 전송
         return JsonResponse(data=result_dict, status=200)
-    
+
     
 class UserScore(APIView):
     """_
@@ -367,15 +374,49 @@ class SurviveQuiz(APIView):
 
         # 게임 종료 조건(문제 100개 해결 또는 점수가 0점에 도달한 경우)
         if (now_score<=0) or (quiz_count>=100):
-            # 평균 스테이지 수
             # 플레이 유저 수
+            users = RankSurvive.objects.filter(stage__lt=101,stage__gte=1).count()
+            # 평균 스테이지 수  
+            mean_stages = round(RankSurvive.objects.filter(stage__lt=101,stage__gte=1).aggregate(stage = Avg('stage'))['stage'],1)
+            
+            
             # 유저의 달성 스테이지 = quiz_count
             # 구간별 유저의 비율
+            #점수분포표 데이터 생성
+            all = RankSurvive.objects.all().count()
+            level10 = RankSurvive.objects.filter(stage__gte=75).count()
+            level9 = RankSurvive.objects.filter(stage__lt=75,stage__gte=60).count()
+            level8 = RankSurvive.objects.filter(stage__lt=60,stage__gte=50).count()
+            level7 = RankSurvive.objects.filter(stage__lt=50,stage__gte=40).count()
+            level6 = RankSurvive.objects.filter(stage__lt=40,stage__gte=30).count()
+            level5 = RankSurvive.objects.filter(stage__lt=30,stage__gte=20).count()
+            level4 = RankSurvive.objects.filter(stage__lt=20,stage__gte=15).count()
+            level3 = RankSurvive.objects.filter(stage__lt=15,stage__gte=10).count()
+            level2 = RankSurvive.objects.filter(stage__lt=10,stage__gte=5).count()
+            level1 = RankSurvive.objects.filter(stage__lt=5,stage__gte=0).count()
+            
+            # 점수 딕셔너리 저장
+            level_dict={
+                "all": all,
+                "level10": level10,
+                "level9": level9,
+                "level8": level8,
+                "level7": level7,
+                "level6": level6,
+                "level5": level5,
+                "level4": level4,
+                "level3": level3,
+                "level2": level2,
+                "level1": level1,
+            }
+            
+            # 1단계 높게 나오는 오류
+            quiz_count =quiz_count -1
             return render(request,'quiz/survive_end.html', context=dict(
-                                                            # quizset=quizset,
-                                                            # now_score=now_score,
+                                                            mean_stages=mean_stages,
+                                                            users=users,
                                                             quiz_count=quiz_count,
-                                                            #  tip=tip,
+                                                            level_dict=level_dict,
                                                             #  round_rate=request.session['quiz_count']*10 ,
                                                             #  round=request.session['quiz_count']
                                                              ),status=200) 
@@ -425,6 +466,12 @@ class SurviveQuiz(APIView):
 
     
 class SurviveUserScore(APIView):
+    """_summary_
+    유저의 점수를 session에 저장
+
+    Args:
+        APIView (_type_): _description_
+    """
     def get(self, request): 
         score = int(request.GET.get('now_score'))  #유저가 얻은 점수
         # 점수 저장
@@ -442,5 +489,3 @@ class SurviveUserScore(APIView):
                                                              ),status=200) 
         return Response(status=200)
             
-
-        return Response(status=200)
