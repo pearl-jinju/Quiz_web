@@ -16,10 +16,10 @@
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" >
 
     <!-- 제목 설정 -->
-    <meta name="title" property="og:title" content="신토불이! 국산품 맞히기 게임" />
+    <meta name="title" property="og:title" content="국산품 맞히기 게임" />
 
     <!-- 설명문 설정 -->
-    <meta name="description" property="og:description" content="신토불이 테스트!"/>
+    <meta name="description" property="og:description" content="국산품 맞히기 게임"/>
 
     <!-- 이미지 설정 -->
     <meta name="image" property="og:image" content="{%get_media_prefix%}meta_thumbnail.png" />
@@ -31,7 +31,7 @@
     <meta property="og:locale" content="ko_KR" />
 
 
-<title>신토불이-국산품 맞히기</title>
+<title>국산품 맞히기 게임</title>
 
  
 <!-- Bootstrap CSS -->
@@ -50,9 +50,9 @@
 
 
 </head>
-<body id="main" class=" bg-dark" >
+<body id="main" class=" bg-white" >
 
-  <div style="width:100%; height:100px; background-color:white; margin:auto;">
+  <div style="width:100%; height:100px; background-color:white; margin:auto; text-align:center;">
     <ins class="kakao_ad_area" style="display:none;"
     data-ad-unit = "DAN-DcdvZO7BbjsXzwdY"
     data-ad-width = "320"
@@ -60,16 +60,19 @@
     <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
   </div>
 
-  <nav class="center navbar bg-dark" style="font-family: 'Noto Sans KR', sans-serif; display:flex; flex-direction:row; justify-content:space-between; align-items:center; margin-top:100px;" >
-        <a class="center" style="color:white; font-weight:bold; font-size:2vh; margin-left:15px;" href="./" >처음으로 </a>
+  <div class="center navbar bg-primary" style="font-family: 'Noto Sans KR', sans-serif; display:flex; flex-direction:row; justify-content:space-between; align-items:center; margin-top:100px;" >
+        <a class="center" style="color:white; font-weight:bold; font-size:2vh; margin-left:3px;" href="./" >처음으로 </a>
         <div  style="text-align:center;">
             <a style="color:white; font-weight:bold;  font-size:12px;"> 사진을 보고 국산품을 클릭하세요 </a>
             <br>
-            <a style="color:white; font-weight:bold;  font-size:30px;"> Q{{quiz_round}}  - {{name}}  </a>
+            <a style="color:white; font-weight:bold;  font-size:18px;"> Q{{quiz_round}}  - {{name}}  </a>
+            <br>
+            <a style="color:white; font-weight:bold;  font-size:12px;"> 정답률 {{correct_rate}}%  </a>
+            
         </div>
-        <a style="color:white; font-weight:bold; font-size:2vh;"> {{quiz_round}}/10  </a>
+        <a style="color:white; font-weight:bold; font-size:2vh;"> {{quiz_round}}/20  </a>
 
-  </nav>
+  </div>
 
 
 
@@ -91,10 +94,10 @@
 
 
 <section class="container-fluid grid thumbs-masonry">
-    <div class="row" style="margin-top:75px;">
+    <div class="row" style="margin-top:60px;">
 
-      <article class="tile col-sm-6 twotwo bg-dark" id="left_img"  >
-        <figure style=" padding:20px; 20px; ">
+      <article class="tile col-sm-6 twotwo bg-white" id="left_img"  >
+        <figure style=" padding:30px; 30px; ">
           <a>
             <img class="lazy" data-src="{%get_media_prefix%}{{left_img}}" alt="" style="border: solid 5px #B9ADDB;  border-radius:15px; width:80%; height:80%; margin:auto;">
           </a>
@@ -102,20 +105,13 @@
       </article>
 
    
-      <article class="tile col-sm-6 twotwo bg-dark" id="right_img" >      
-        <figure style=" padding:20px; 20px;">
+      <article class="tile col-sm-6 twotwo bg-white" id="right_img" >      
+        <figure style=" padding:30px; 30px;">
           <a>
             <img class="lazy"  data-src="{%get_media_prefix%}{{right_img}}" alt="" style="border: solid 5px #B9ADDB;  border-radius:15px; width:80%; height:80%; margin:auto;">
           </a>
         </figure>
       </article>
-
-
-      <div class=class="tile col-sm-6 twotwo bg-dark" >
-        <a style="position: absolute; top: 67%; left: 50%; transform:translate(-50%,-70%); text-align: center;"  >
-          <img style="width:200px;"  src="{%get_media_prefix%}VSimage.png">
-        </a>  
-      </div>	 
 
         
 
@@ -129,9 +125,10 @@
 
 
 
+
+
 <!-- //footer -->
 <script type='text/javascript' src='https://www.crit-research.it/wp-includes/js/imagesloaded.min.js'></script>
-
 <script type='text/javascript' src='https://www.crit-research.it/wp-content/themes/crit/assets/js/isotope.pkgd.min.js'></script>
 <script type='text/javascript' src='https://www.crit-research.it/wp-content/themes/crit/assets/js/jquery.autosize.min.js'></script>
 <script type='text/javascript' src='https://www.crit-research.it/wp-content/themes/crit/assets/js/jquery.matchHeight.js'></script>
@@ -178,14 +175,6 @@
 
 </script>
 
-<script type="text/javascript">
-  window.onload=function(){
-  var messageTextBox = $('#main').prop('scrollHeight');
-  $('#main').scrollTop(messageTextBox);
-
-
-};
-</script>
 
 </body>
 </html>

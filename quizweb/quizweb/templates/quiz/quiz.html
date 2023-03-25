@@ -196,6 +196,7 @@
         <div class="bar"></div>
         <div class="rate" data-rate={{round}} >{{round}}/10</div>
       </div>
+      <div id="alert-bar" style="margin:auto; text-align:center; color:red; font-weight:bold;">      </div>
 
       
       <div  class="row col-12 d-flex justify-content-center">
@@ -332,7 +333,7 @@ $(".plus").click(function (event){
     var currentValue = $('#price').attr("value")
     $('#price').attr("value",resultValue)
     if ($('#price').attr("value")>=1000000){
-      alert("100만원 미만으로 입력가능합니다!")
+      $('#alert-bar').html("※ 100만원 미만으로 입력가능합니다!");
       $('#price').attr("value",resultValue - plusValue)
     }
 
