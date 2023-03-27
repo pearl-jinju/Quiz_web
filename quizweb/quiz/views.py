@@ -4,8 +4,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
 from django.core import serializers
-from .models import QuizSet, Rank, RankSurvive
+from .models import QuizSet, Rank, RankSurvive, SintoburiCorrectRate
 from django.db.models import Avg
+
 
 import random
 
@@ -24,7 +25,6 @@ tip_list =[
     "tip : 쇼핑몰 가격기준입니다.",
     "tip : 그림과 문구를 보면 힌트가 보입니다.",
     "tip : 버튼 클릭으로만 작성해야합니다.",
-    "tip : 서바이벌 모드는 추후 개발 예정입니다.",
     "tip : 광고 클릭은 개발자 인생에 큰 도움이 됩니다.",
     "tip : 할인율이 크게 적용된(특가)상품은 현재 가격에 반영됩니다. (할인중 표시)",
     "tip : 할인율이 적게 적용된 상품은 할인 전 가격이 반영됩니다.",
@@ -60,6 +60,7 @@ class Quiz(APIView):
         now_score = request.session.get('now_score', 0) 
         #문제의 현재 순번을 받음, 없다면(시작시) 1번째로 시작 
         quiz_count = request.session.get('quiz_count', 1) 
+        
 
         # a = QuizSet.objects.filter(quiz_id = 29).first()
         # a.delete()
@@ -159,7 +160,6 @@ class CheckAnswer(APIView):
         quiz_id = int(request.session.get('quiz_id'))
         # 유저가 입력한 상품정보
         price = int(request.GET.get('price'))  
-        print(price)
         # quizset을 가져옴(quizset의 정답(가격)을 가져옴)
         quizset = QuizSet.objects.filter(quiz_id= quiz_id).first()
         answer_price = quizset.price
@@ -364,7 +364,7 @@ class UploadSuriveScore(APIView):
 class SurviveQuiz(APIView):
     def get(self, request):
         # 문제종료 조건 체크    
-        now_score = request.session.get('now_score', 60) 
+        now_score = request.session.get('now_score', 30) 
         
         
         #문제의 순번을 받음

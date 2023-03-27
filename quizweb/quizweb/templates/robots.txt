@@ -8,4 +8,13 @@ Disallow: quiz/uploadscore
 Disallow: quiz/survive
 Disallow: quiz/admin
 
+Disallow: home/sintoburi/quiz
+Disallow: home/sintoburi/quiz
+Disallow: home/sintoburi/check
+
+Disallow: home/lolquiz/quiz
+Disallow: home/lolquiz/check
+Disallow: home/lolquiz/score
+
+
 Sitemap: http://how-much-quiz.shop/

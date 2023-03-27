@@ -8,16 +8,16 @@
     <meta name="generator" content="Hugo 0.104.2">
     
     <!-- 제목 설정 -->
-    <meta name="title" property="og:title" content="HOW MUCH? 상품가격 맞히기 게임" />
+    <meta name="title" property="og:title" content="그님티? LOL 아이템 가격 맞히기" />
 
     <!-- 설명문 설정 -->
-    <meta name="description" property="og:description" content="나는 세상물정을 잘 알까?"/>
+    <meta name="description" property="og:description" content="그님티? LOL 아이템 가격 맞히기"/>
 
     <!-- 이미지 설정 -->
-    <meta name="image" property="og:image" content="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FwheA3%2Fbtr0h2cRKxB%2F5Uq1a3tUZvDqdrfx4mtmQK%2Fimg.png" />
+    <meta name="image" property="og:image" content="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fn3K0E%2Fbtr5QhpUya9%2FRhKV2JQAygLjojzABnjxRK%2Fimg.png" />
 
     <!-- URL 설정 -->
-    <meta name="url" property="og:url" content="http://how-much-quiz.shop" />
+    <meta name="url" property="og:url" content="http://how-much-quiz.shop/home/lolquiz/" />
 
     <!-- 언어 설정 -->
     <meta property="og:locale" content="ko_KR" />
@@ -25,7 +25,7 @@
     <!--static load-->
     {% load static %}   
     
-    <title>개발자의 다른 게임</title>
+    <title>그님티? LOL 아이템 가격 맞히기</title>
 
     <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/product/">
 
@@ -98,23 +98,18 @@
     
 
 <main>
-  <div>
-    <ins class="kakao_ad_area" style="display:none;" 
-    data-ad-unit = "DAN-I9jpJgiDXeZX3kqi"
-    data-ad-width = "320"
-    data-ad-height = "100"></ins>
-    <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-  </div>
 
   <div class="position-relative overflow-hidden p-3 p-md-2 m-md-2 text-center bg-light" >
-      <div class="col-md-6 p-lg-6 mx-auto my-5" >
-        <h1 class="display-1 fw-normal" style="font-family: 'Jua', sans-serif; margin-bottom:20px;">개발자의 다른 게임</h1>
-        <a href=".."><img  style="margin:auto; width:300px; border: solid 5px orange; border-radius:50px;" src="{% get_media_prefix %}howmuch_main.png"></a>
-        <div style="font-size:12px; color:gray; margin-bottom:20px;">{{howmuch_all}}명 참여</div>
-        <a href="sintoburi"><img  style="margin:auto; width:300px; border: solid 5px orange; border-radius:50px;" src="{% get_media_prefix %}sintoburi_main.png"></a>
-        <div style="font-size:12px; color:gray; margin-bottom:20px;">{{sintoburi_all}}명 참여</div>
-        <a href="lolquiz"><img  style="margin:auto; width:300px; border: solid 5px orange; border-radius:50px;" src="{% get_media_prefix %}lol_main.png"></a>
-        <div style="font-size:12px; color:gray; margin-bottom:20px;">{{lolquiz_all}}명 참여</div>
+      <div class="col-md-5 p-lg-5 mx-auto my-5" >
+        <h1 class="display-1 fw-normal" style="font-family: 'Jua', sans-serif;">그님티?</h1>
+        <h1 class="display-5 fw-normal" style="font-family: 'Jua', sans-serif; margin-top:20px;">LOL 아이템 가격 맞히기</h1>
+        <p class="lead fw-normal" style="margin-top:20px; color:gray; font-size:14px;"> </p>
+        <a class="btn btn-outline-primary" style="margin:10px 0px 0px 0px; width:300px; height:55px; font-weight:bold; text-align;center;  font-size:25px;" href="quiz"> 게임 시작</a>
+        <div style="font-size:12px; color:gray">{{lol_user}}명 참여</div>
+
+
+        <a class="btn btn-outline-success" style=" width:300px; height:45px; font-weight:bold; text-align;center;  font-size:20px; margin-top:30px;" href="/home">개발자의 다른 게임</a>
+
       </div>
     <div class="product-device shadow-sm d-none d-md-block"></div>
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
@@ -128,18 +123,23 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   <!--하단 광고 -->
-  <div style="display:flex; flex-direction:column; justify-content:center; text-align:center; margin:auto; width:100%;">
-
+  <div style="display:flex; flex-direction:column; justify-content:center; text-align:center; ">
     <ins class="kakao_ad_area" style="display:none;"
-    data-ad-unit = "DAN-HhdD95x27VlnKcIK"
+    data-ad-unit = "DAN-EzsutUJWi6RXGWKq"
     data-ad-width = "320"
     data-ad-height = "100"></ins>
     <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
-  </div>
-      
-  </body>
+   
+    <ins class="kakao_ad_area" style="display:none;"
+    data-ad-unit = "DAN-7AnpxHG0fdOclWsI"
+    data-ad-width = "320"
+    data-ad-height = "50"></ins>
+    <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+ 
 
   <div style="text-align:center; color:gray;font-size:11px; margin-top:3px;">광고가 미쳤습니다.. 그래도 봐주세요..  광고 문의 y2kwlswn@naver.com</div>
+  </div>
+</body>
 </footer>
 </html>
 
